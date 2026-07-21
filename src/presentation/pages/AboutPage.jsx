@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Eye, Target, HeartHandshake } from 'lucide-react';
 import { getMilestones, getTeam } from '../../domain/usecases/getContent.js';
 import { usePageMeta } from '../hooks/usePageMeta.jsx';
