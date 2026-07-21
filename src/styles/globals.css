@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: 255 255 255;
+  --color-surface: 248 250 252;
+  --color-surface-alt: 241 245 249;
+  --color-border: 226 232 240;
+  --color-text-primary: 15 23 42;
+  --color-text-secondary: 71 85 105;
+  --color-text-muted: 148 163 184;
+}
+
+.dark {
+  --color-background: 11 17 32;
+  --color-surface: 15 23 42;
+  --color-surface-alt: 30 41 59;
+  --color-border: 51 65 85;
+  --color-text-primary: 248 250 252;
+  --color-text-secondary: 203 213 225;
+  --color-text-muted: 100 116 139;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    @apply font-extrabold leading-tight;
+  }
+
+  h2 {
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
+    @apply font-bold leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl font-bold leading-snug;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-hero-gradient;
+  }
+
+  .label-caps {
+    @apply text-xs font-semibold uppercase tracking-[0.08em];
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(to right, rgb(15 23 42 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .dark .grid-pattern {
+    background-image: none;
+  }
+
+  .prose-content h2 {
+    @apply mt-10 mb-4 text-2xl;
+  }
+
+  .prose-content h3 {
+    @apply mt-8 mb-3 text-xl;
+  }
+
+  .prose-content p {
+    @apply mb-4 text-text-secondary;
+  }
+
+  .prose-content ul {
+    @apply mb-4 list-disc space-y-2 pl-6 text-text-secondary;
+  }
+
+  .prose-content a {
+    @apply text-primary underline underline-offset-2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
