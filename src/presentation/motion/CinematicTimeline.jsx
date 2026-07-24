@@ -58,9 +58,9 @@ export function CinematicTimeline() {
   const { reducedMotion } = useMotionPrefs();
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end'],
+    offset: ['start 0.75', 'end 0.55'],
   });
-  const line = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const milestones = useMemo(() => MILESTONES, []);
 
   if (reducedMotion) {
@@ -78,83 +78,51 @@ export function CinematicTimeline() {
   }
 
   return (
-    <div ref={containerRef} className="relative md:h-[400vh]">
-      <div className="md:sticky md:top-24 md:h-[70vh]">
-        <div className="relative mx-auto h-full max-w-4xl">
-          <svg className="absolute left-1/2 top-0 hidden h-full w-2 -translate-x-1/2 md:block" aria-hidden="true">
-            <line
-              x1="50%"
-              y1="0"
-              x2="50%"
-              y2="100%"
-              stroke="rgb(51 65 85)"
-              strokeWidth="2"
-            />
-            <motion.line
-              x1="50%"
-              y1="0"
-              x2="50%"
-              y2="100%"
-              stroke="url(#energy)"
-              strokeWidth="3"
-              style={{ pathLength: line }}
-            />
-            <defs>
-              <linearGradient id="energy" x1="0" y1="0" x2="0" y2="1">
-                <stop stopColor="#2563EB" />
-                <stop offset="1" stopColor="#7C3AED" />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          <div className="grid gap-8 py-6 md:grid-cols-1">
-            {milestones.map((m, i) => {
-              const start = i / milestones.length;
-              const end = (i + 0.85) / milestones.length;
-              return (
-                <TimelineCard
-                  key={m.year}
-                  milestone={m}
-                  index={i}
-                  progress={scrollYProgress}
-                  start={start}
-                  end={end}
-                />
-              );
-            })}
-          </div>
-        </div>
+    <div ref={containerRef} className="relative mx-auto max-w-4xl">
+      {/* Base rail */}
+      <div className="absolute left-4 top-0 h-full w-0.5 bg-border md:left-1/2 md:-translate-x-1/2" />
+      {/* Energy line drawn by scroll */}
+      <motion.div
+        className="absolute left-4 top-0 h-full w-0.5 origin-top bg-gradient-to-b from-primary via-indigo-500 to-violet-600 shadow-[0_0_12px_rgba(37,99,235,0.8)] will-change-transform md:left-1/2 md:-translate-x-1/2"
+        style={{ scaleY: lineScale }}
+      />
+      <div className="space-y-10 py-4 md:space-y-16">
+        {milestones.map((m, i) => (
+          <TimelineCard key={m.year} milestone={m} index={i} />
+        ))}
       </div>
     </div>
   );
 }
 
-function TimelineCard({ milestone, index, progress, start, end }) {
-  const opacity = useTransform(progress, [start, start + 0.05, end], [0.2, 1, 1]);
-  const x = useTransform(
-    progress,
-    [start, start + 0.08],
-    [index % 2 === 0 ? -40 : 40, 0],
-  );
-  const scale = useTransform(progress, [start, start + 0.08], [0.6, 1]);
-
+function TimelineCard({ milestone, index }) {
+  const left = index % 2 === 0;
   return (
-    <motion.div
-      style={{ opacity, x }}
-      className={`relative rounded-xl border border-border bg-background/90 p-5 shadow-lg backdrop-blur md:w-[46%] ${
-        index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'
-      }`}
-    >
+    <div className="relative pl-12 md:pl-0">
+      {/* Node */}
       <motion.span
-        style={{ scale }}
-        className="absolute -left-3 top-6 hidden h-4 w-4 rounded-full bg-hero-gradient shadow-[0_0_20px_rgba(37,99,235,0.7)] md:block"
+        className="absolute left-4 top-6 h-4 w-4 -translate-x-1/2 rounded-full bg-hero-gradient shadow-[0_0_20px_rgba(37,99,235,0.7)] md:left-1/2"
+        initial={{ scale: 0, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
       />
-      <p className="font-mono text-2xl font-bold text-primary">{milestone.year}</p>
-      <h3 className="mt-1 text-xl">{milestone.title}</h3>
-      <p className="mt-2 text-sm text-text-secondary">{milestone.story}</p>
-      <span className="mt-3 inline-flex rounded-full bg-primary-light px-3 py-1 text-xs font-semibold text-primary dark:bg-primary/20">
-        {milestone.stat}
-      </span>
-    </motion.div>
+      <motion.div
+        initial={{ opacity: 0, x: left ? -36 : 36, y: 12 }}
+        whileInView={{ opacity: 1, x: 0, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className={`relative rounded-xl border border-border bg-background/90 p-5 shadow-lg backdrop-blur md:w-[46%] ${
+          left ? 'md:mr-auto' : 'md:ml-auto'
+        }`}
+      >
+        <p className="font-mono text-2xl font-bold text-primary">{milestone.year}</p>
+        <h3 className="mt-1 text-xl">{milestone.title}</h3>
+        <p className="mt-2 text-sm text-text-secondary">{milestone.story}</p>
+        <span className="mt-3 inline-flex rounded-full bg-primary-light px-3 py-1 text-xs font-semibold text-primary dark:bg-primary/20">
+          {milestone.stat}
+        </span>
+      </motion.div>
+    </div>
   );
 }

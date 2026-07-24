@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Eye, Target, HeartHandshake } from 'lucide-react';
 import { getTeam } from '../../domain/usecases/getContent.js';
@@ -258,24 +258,26 @@ export function AboutPage() {
 }
 
 function HoloCard({ children }) {
-  const [style, setStyle] = useState({});
+  const cardRef = useRef(null);
   const { reducedMotion, isFinePointer } = useMotionPrefs();
 
   return (
     <div
-      className="relative overflow-hidden rounded-xl border border-border bg-background p-6 shadow-sm transition duration-300 lg:p-8"
-      style={style}
+      ref={cardRef}
+      className="relative overflow-hidden rounded-xl border border-border bg-background p-6 shadow-sm transition-shadow duration-300 will-change-transform lg:p-8"
       onMouseMove={(e) => {
-        if (reducedMotion || !isFinePointer) return;
+        if (reducedMotion || !isFinePointer || !cardRef.current) return;
         const rect = e.currentTarget.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width;
         const py = (e.clientY - rect.top) / rect.height;
-        setStyle({
-          transform: `perspective(1200px) rotateX(${(0.5 - py) * 10}deg) rotateY(${(px - 0.5) * 10}deg)`,
-          backgroundImage: `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(255,255,255,0.18), transparent 40%)`,
-        });
+        cardRef.current.style.transform = `perspective(1200px) rotateX(${(0.5 - py) * 10}deg) rotateY(${(px - 0.5) * 10}deg)`;
+        cardRef.current.style.backgroundImage = `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(255,255,255,0.18), transparent 40%)`;
       }}
-      onMouseLeave={() => setStyle({ transform: 'perspective(1200px) rotateX(0) rotateY(0)' })}
+      onMouseLeave={() => {
+        if (!cardRef.current) return;
+        cardRef.current.style.transform = 'perspective(1200px) rotateX(0) rotateY(0)';
+        cardRef.current.style.backgroundImage = '';
+      }}
     >
       <div className="pointer-events-none absolute inset-0 rounded-xl opacity-40 [background:conic-gradient(from_0deg,#2563EB33,#7C3AED33,#F59E0B33,#2563EB33)] animate-[orbit-spin_8s_linear_infinite]" />
       <div className="relative z-10">{children}</div>

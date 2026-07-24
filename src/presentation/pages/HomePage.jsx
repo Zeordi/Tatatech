@@ -87,10 +87,10 @@ export function HomePage() {
     }
     let i = 0;
     const id = window.setInterval(() => {
-      i += 1;
+      i += 3;
       setTyped(subtitle.slice(0, i));
       if (i >= subtitle.length) window.clearInterval(id);
-    }, 16);
+    }, 12);
     return () => window.clearInterval(id);
   }, [booted, reducedMotion, subtitle]);
 
@@ -131,7 +131,7 @@ export function HomePage() {
           <div className="hero-beam absolute inset-y-0 w-1/3" />
         </div>
         <PageContainer className="relative grid min-h-[92vh] items-center gap-10 py-20 lg:grid-cols-2">
-          <div className="text-center lg:text-left">
+          <div className="text-center">
             <div className="mb-6 inline-flex">
               <span className="label-caps relative overflow-hidden rounded-full border border-primary/40 bg-primary-light px-4 py-1.5 text-primary dark:bg-primary/15">
                 <ScrambleText text="VIRGINIA-BASED TECH COMPANY" />
@@ -156,7 +156,7 @@ export function HomePage() {
                 </svg>
               </span>
             </div>
-            <h1 className="max-w-3xl">
+            <h1 className="mx-auto max-w-3xl">
               <SplitTextReveal text="Full-Service Digital Technology." as="span" className="block" />
               <span className="relative mt-2 inline-block h-[1.15em] overflow-hidden text-gradient">
                 <AnimatePresence mode="wait">
@@ -178,14 +178,14 @@ export function HomePage() {
                 </AnimatePresence>
               </span>
             </h1>
-            <p className="mt-5 max-w-2xl text-lg text-text-secondary">
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-text-secondary">
               {typed}
               {!reducedMotion && typed.length < subtitle.length ? (
                 <span className="ml-0.5 animate-pulse">▍</span>
               ) : null}
             </p>
             <motion.div
-              className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+              className="mt-8 flex flex-wrap items-center justify-center gap-3"
               initial={reducedMotion ? false : { y: 24, opacity: 0 }}
               animate={booted ? { y: 0, opacity: 1 } : undefined}
               transition={{ type: 'spring', stiffness: 180, damping: 14, delay: 0.2 }}

@@ -16,13 +16,13 @@ export function HeroBoot({ onDone }) {
       onDone?.();
       return undefined;
     }
-    const t1 = window.setTimeout(() => setPhase('beam'), 200);
-    const t2 = window.setTimeout(() => setPhase('scan'), 700);
+    const t1 = window.setTimeout(() => setPhase('beam'), 120);
+    const t2 = window.setTimeout(() => setPhase('scan'), 450);
     const t3 = window.setTimeout(() => {
       setPhase('done');
       sessionStorage.setItem('tt-boot', '1');
       onDone?.();
-    }, 1800);
+    }, 1050);
     return () => {
       window.clearTimeout(t1);
       window.clearTimeout(t2);
@@ -51,14 +51,14 @@ export function HeroBoot({ onDone }) {
           <motion.div
             className="h-px w-0 bg-gradient-to-r from-transparent via-primary to-transparent"
             animate={{ width: phase === 'boot' ? '0%' : '80%' }}
-            transition={{ duration: 0.55, ease: EASE_EXPO }}
+            transition={{ duration: 0.35, ease: EASE_EXPO }}
           />
           {phase === 'scan' ? (
             <motion.div
               className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-primary/30 to-transparent"
               initial={{ top: '-10%' }}
               animate={{ top: '110%' }}
-              transition={{ duration: 0.7, ease: 'linear' }}
+              transition={{ duration: 0.45, ease: 'linear' }}
             />
           ) : null}
         </motion.button>

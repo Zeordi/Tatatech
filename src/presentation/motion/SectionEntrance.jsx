@@ -24,7 +24,7 @@ export function SectionEntrance({ children, className = '', id }) {
       animate={inView ? 'show' : 'hidden'}
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+        show: { transition: { staggerChildren: 0.05 } },
       }}
     >
       {children}
@@ -40,7 +40,7 @@ export function EntranceHeading({ children, className = '' }) {
       className={className}
       variants={{
         hidden: { opacity: 0, y: 18 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_EXPO } },
+        show: { opacity: 1, y: 0, transition: { duration: 0.32, ease: EASE_EXPO } },
       }}
     >
       {children}
@@ -48,7 +48,7 @@ export function EntranceHeading({ children, className = '' }) {
         className="mt-3 block h-0.5 w-24 origin-left rounded-full bg-hero-gradient"
         variants={{
           hidden: { scaleX: 0 },
-          show: { scaleX: 1, transition: { duration: 0.5, ease: EASE_EXPO } },
+          show: { scaleX: 1, transition: { duration: 0.35, ease: EASE_EXPO } },
         }}
       />
     </motion.div>
@@ -63,7 +63,7 @@ export function EntranceBody({ children, className = '' }) {
       className={className}
       variants={{
         hidden: { opacity: 0, y: 16 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE_EXPO } },
+        show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE_EXPO } },
       }}
     >
       {children}
@@ -84,7 +84,7 @@ export function EntranceCard({ children, className = '' }) {
           opacity: 1,
           y: 0,
           rotateX: 0,
-          transition: { duration: 0.5, ease: EASE_EXPO },
+          transition: { duration: 0.35, ease: EASE_EXPO },
         },
       }}
     >

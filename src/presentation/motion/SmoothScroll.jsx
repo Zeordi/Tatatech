@@ -9,8 +9,8 @@ export function SmoothScroll({ children }) {
     if (reducedMotion) return undefined;
 
     const lenis = new Lenis({
-      lerp: 0.08,
-      wheelMultiplier: 1.1,
+      lerp: 0.18,
+      wheelMultiplier: 1.35,
       smoothWheel: true,
     });
 

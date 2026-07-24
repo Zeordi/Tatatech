@@ -8,7 +8,7 @@ export function ScrambleText({
   text,
   className = '',
   as: Tag = 'span',
-  duration = 800,
+  duration = 450,
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });

@@ -40,8 +40,8 @@ export function SplitTextReveal({
                       : { y: '110%', rotateX: 90, opacity: 0 }
                   }
                   transition={{
-                    duration: 0.55,
-                    delay: delay + i * 0.02,
+                    duration: 0.38,
+                    delay: delay + i * 0.012,
                     ease: EASE_EXPO,
                   }}
                   style={{ transformPerspective: 600 }}

@@ -9,8 +9,8 @@ export function CustomCursor() {
   const [visible, setVisible] = useState(false);
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  const rx = useSpring(x, { damping: 20, stiffness: 250 });
-  const ry = useSpring(y, { damping: 20, stiffness: 250 });
+  const rx = useSpring(x, { damping: 32, stiffness: 900, mass: 0.35 });
+  const ry = useSpring(y, { damping: 32, stiffness: 900, mass: 0.35 });
 
   useEffect(() => {
     if (reducedMotion || !isFinePointer) return undefined;
@@ -45,11 +45,11 @@ export function CustomCursor() {
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[120] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[120] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary mix-blend-difference will-change-transform"
         style={{ x, y, opacity: visible ? 1 : 0 }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[119] flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary/70 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[119] flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary/70 mix-blend-difference will-change-transform"
         style={{
           x: rx,
           y: ry,

@@ -3,7 +3,6 @@ import { Footer } from './Footer.jsx';
 import { Navbar } from './Navbar.jsx';
 import { Toast } from '../ui/Toast.jsx';
 import {
-  CustomCursor,
   PageTransition,
   ParticleField,
   ScrollProgressHUD,
@@ -20,8 +19,8 @@ export function RootLayout() {
         >
           Skip to content
         </a>
+        <div className="tech-backdrop" aria-hidden="true" />
         <ParticleField />
-        <CustomCursor />
         <PageTransition />
         <ScrollProgressHUD />
         <Navbar />
