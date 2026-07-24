@@ -27,6 +27,16 @@
     scroll-behavior: smooth;
   }
 
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none !important;
+  }
+
   body {
     @apply bg-background text-text-primary font-body antialiased;
   }
@@ -102,6 +112,187 @@
   .prose-content a {
     @apply text-primary underline underline-offset-2;
   }
+
+  .magnetic-btn:hover .liquid-fill {
+    opacity: 0.18;
+    background: radial-gradient(
+      circle 140px at var(--mx, 50%) var(--my, 50%),
+      rgba(255, 255, 255, 0.55),
+      transparent 70%
+    );
+    transition: opacity 0.45s ease;
+  }
+
+  .accent-orbit-border {
+    isolation: isolate;
+  }
+
+  .accent-orbit-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--orbit-angle, 0deg), #f59e0b, #2563eb, #7c3aed, #f59e0b);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: orbit-spin 4s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hologram-grid {
+    background-image:
+      linear-gradient(to right, rgba(37, 99, 235, 0.35) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.35) 1px, transparent 1px);
+    background-size: 48px 48px;
+    transform: rotateX(60deg) scale(1.4);
+    transform-origin: center top;
+    animation: grid-scroll 3s linear infinite;
+    opacity: 0.08;
+  }
+
+  .dark .hologram-grid {
+    opacity: 0.15;
+  }
+
+  .hero-aurora {
+    filter: blur(64px);
+    animation: aurora-drift 12s ease-in-out infinite alternate;
+  }
+
+  .hero-beam {
+    background: linear-gradient(
+      115deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 60%
+    );
+    animation: beam-sweep 9s ease-in-out infinite;
+  }
+
+  .card-beam::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: none;
+    pointer-events: none;
+  }
+
+  .card-beam:hover::after {
+    animation: card-sweep 0.7s ease forwards;
+  }
+
+  .scanline-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanline-hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .scanline-hover:hover::after {
+    opacity: 1;
+    animation: scan-sweep 0.6s ease forwards;
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(
+      110deg,
+      rgb(var(--color-surface-alt)) 25%,
+      rgb(var(--color-surface)) 45%,
+      rgb(var(--color-surface-alt)) 65%
+    );
+    background-size: 200% 100%;
+    animation: shimmer-diag 1.4s linear infinite;
+  }
+}
+
+@keyframes orbit-spin {
+  to {
+    --orbit-angle: 360deg;
+  }
+}
+
+@property --orbit-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes grid-scroll {
+  to {
+    background-position: 0 48px;
+  }
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-4%, 0, 0) scale(1);
+    filter: blur(64px) hue-rotate(-15deg);
+  }
+  to {
+    transform: translate3d(4%, 2%, 0) scale(1.08);
+    filter: blur(64px) hue-rotate(15deg);
+  }
+}
+
+@keyframes beam-sweep {
+  0%,
+  80%,
+  100% {
+    transform: translateX(-120%) skewX(-18deg);
+    opacity: 0;
+  }
+  85%,
+  92% {
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(120%) skewX(-18deg);
+  }
+}
+
+@keyframes card-sweep {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes scan-sweep {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes shimmer-diag {
+  to {
+    background-position: -200% 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -110,7 +301,12 @@
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.2s !important;
     scroll-behavior: auto !important;
+  }
+
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: auto !important;
   }
 }

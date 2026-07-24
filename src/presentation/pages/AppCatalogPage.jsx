@@ -1,4 +1,5 @@
 import { useEffect, useState, useTransition } from 'react';
+import { motion } from 'framer-motion';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { filterAppCatalog } from '../../domain/usecases/filterAppCatalog.js';
 import { usePageMeta } from '../hooks/usePageMeta.jsx';
@@ -200,8 +201,18 @@ export function AppCatalogPage() {
               ) : (
                 <>
                   <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-                    {result.items.map((app) => (
-                      <AppCard key={app.id} app={app} />
+                    {result.items.map((app, index) => (
+                      <motion.div
+                        key={app.id}
+                        initial={{ opacity: 0, y: 18 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: ((Math.floor(index / 4) + (index % 4)) * 0.05),
+                          duration: 0.35,
+                        }}
+                      >
+                        <AppCard app={app} />
+                      </motion.div>
                     ))}
                   </div>
                   {result.hasMore || filters.page > 1 ? (

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { LayoutGroup, motion } from 'framer-motion';
+import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { getProjects } from '../../domain/usecases/getProjects.js';
 import { usePageMeta } from '../hooks/usePageMeta.jsx';
 import { Breadcrumbs } from '../components/layout/Breadcrumbs.jsx';
 import { PageContainer } from '../components/layout/PageContainer.jsx';
 import { Section } from '../components/layout/Section.jsx';
 import { ProjectCard } from '../components/shared/ProjectCard.jsx';
+import { SplitTextReveal, SPRING_LAYOUT } from '../motion/index.js';
 import { cn } from '../../utils/formatters.js';
 
 const filters = ['All', 'Web', 'Software', 'Infrastructure', 'NFC', 'LMS'];
@@ -33,7 +34,7 @@ export function PortfolioPage() {
               { label: 'Portfolio' },
             ]}
           />
-          <h1>Portfolio</h1>
+          <SplitTextReveal text="Portfolio" as="h1" />
           <p className="mt-3 max-w-2xl text-text-secondary">
             Selected work across web, software, infrastructure, NFC, and LMS.
           </p>
@@ -42,36 +43,46 @@ export function PortfolioPage() {
 
       <Section>
         <PageContainer>
-          <div className="mb-8 flex flex-wrap gap-2">
-            {filters.map((item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setCategory(item)}
-                className={cn(
-                  'min-h-11 rounded-full px-4 py-2 text-sm font-semibold transition-colors',
-                  category === item
-                    ? 'bg-primary text-white'
-                    : 'border border-border text-text-secondary hover:border-primary',
-                )}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
           <LayoutGroup>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-              {projects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.25 }}
+            <div className="mb-8 flex flex-wrap gap-2">
+              {filters.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setCategory(item)}
+                  className={cn(
+                    'relative min-h-11 rounded-full px-4 py-2 text-sm font-semibold transition-colors',
+                    category === item
+                      ? 'text-white'
+                      : 'border border-border text-text-secondary hover:border-primary',
+                  )}
                 >
-                  <ProjectCard project={project} overlay />
-                </motion.div>
+                  {category === item ? (
+                    <motion.span
+                      layoutId="filter-glow"
+                      className="absolute inset-0 rounded-full bg-primary shadow-[0_0_20px_rgba(37,99,235,0.45)]"
+                      transition={SPRING_LAYOUT}
+                    />
+                  ) : null}
+                  <span className="relative z-10">{item}</span>
+                </button>
               ))}
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              <AnimatePresence mode="popLayout">
+                {projects.map((project) => (
+                  <motion.div
+                    key={project.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9, filter: 'blur(6px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 0.9, filter: 'blur(6px)' }}
+                    transition={SPRING_LAYOUT}
+                  >
+                    <ProjectCard project={project} overlay />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
           </LayoutGroup>
         </PageContainer>

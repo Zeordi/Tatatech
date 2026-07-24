@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import {
   getRelatedServices,
@@ -65,15 +66,47 @@ export function ServiceDetailPage() {
               <p className="max-w-prose text-text-secondary">{service.description}</p>
 
               <h2 className="mb-6 mt-12 text-2xl">Our Process</h2>
-              <ol className="relative space-y-8 border-l border-border pl-8">
+              <ol className="relative space-y-8 border-l-2 border-border pl-8">
+                <motion.span
+                  className="absolute left-[-2px] top-0 w-0.5 origin-top bg-hero-gradient"
+                  style={{ height: '100%' }}
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                />
                 {service.process.map((step, index) => (
-                  <li key={step.title} className="relative">
-                    <span className="absolute -left-[2.55rem] flex h-8 w-8 items-center justify-center rounded-full bg-hero-gradient text-sm font-bold text-white">
+                  <motion.li
+                    key={step.title}
+                    className="relative"
+                    initial={{ opacity: 0.4 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.7 }}
+                  >
+                    <motion.span
+                      className="absolute -left-[2.55rem] flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-background text-sm font-bold text-primary"
+                      initial={{ rotateY: 180 }}
+                      whileInView={{
+                        rotateY: 0,
+                        backgroundImage: 'linear-gradient(135deg,#2563EB,#7C3AED)',
+                        color: '#fff',
+                        borderColor: 'transparent',
+                      }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      transition={{ duration: 0.45, delay: index * 0.08 }}
+                    >
                       {index + 1}
-                    </span>
+                      <motion.span
+                        className="absolute inset-0 rounded-full border border-primary"
+                        initial={{ scale: 1, opacity: 0.6 }}
+                        whileInView={{ scale: 1.8, opacity: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                      />
+                    </motion.span>
                     <h3 className="text-lg">{step.title}</h3>
                     <p className="mt-1 text-text-secondary">{step.description}</p>
-                  </li>
+                  </motion.li>
                 ))}
               </ol>
 
