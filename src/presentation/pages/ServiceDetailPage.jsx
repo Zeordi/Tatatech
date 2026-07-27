@@ -6,7 +6,6 @@ import {
   getRelatedServices,
   getServiceBySlug,
 } from '../../domain/usecases/getServices.js';
-import { formatCurrency } from '../../utils/formatters.js';
 import { usePageMeta } from '../hooks/usePageMeta.jsx';
 import { Breadcrumbs } from '../components/layout/Breadcrumbs.jsx';
 import { PageContainer } from '../components/layout/PageContainer.jsx';
@@ -132,11 +131,7 @@ export function ServiceDetailPage() {
 
             <aside className="lg:col-span-1">
               <div className="rounded-xl border border-border bg-background p-6 shadow-sm lg:sticky lg:top-24">
-                <p className="text-sm text-text-muted">Starting at</p>
-                <p className="mt-1 font-heading text-3xl font-extrabold">
-                  {formatCurrency(service.startingPrice)}
-                </p>
-                <p className="mt-3 text-sm text-text-secondary">
+                <p className="text-sm text-text-secondary">
                   Typical timeline: {service.timeline}
                 </p>
                 <Button as={Link} to="/contact" variant="accent" className="mt-6 w-full">

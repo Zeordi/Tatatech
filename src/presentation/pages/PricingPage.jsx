@@ -7,13 +7,10 @@ import { Section } from '../components/layout/Section.jsx';
 import { PricingCard } from '../components/shared/PricingCard.jsx';
 import { CTABanner } from '../components/shared/CTABanner.jsx';
 import { Accordion } from '../components/ui/Accordion.jsx';
-import { Tabs } from '../components/ui/Tabs.jsx';
-import { formatCurrency } from '../../utils/formatters.js';
 
 export function PricingPage() {
   const [plans, setPlans] = useState([]);
   const [faqs, setFaqs] = useState([]);
-  const [billing, setBilling] = useState('monthly');
   const [openFaq, setOpenFaq] = useState('1');
   const [openPlan, setOpenPlan] = useState(null);
 
@@ -41,16 +38,6 @@ export function PricingPage() {
           <p className="mt-3 max-w-2xl text-text-secondary">
             Choose a package or talk to us about a custom engagement.
           </p>
-          <div className="mt-6">
-            <Tabs
-              value={billing}
-              onChange={setBilling}
-              tabs={[
-                { value: 'monthly', label: 'Monthly' },
-                { value: 'one-time', label: 'One-time' },
-              ]}
-            />
-          </div>
         </PageContainer>
       </div>
 
@@ -58,7 +45,7 @@ export function PricingPage() {
         <PageContainer>
           <div className="grid items-stretch gap-6 lg:grid-cols-3 lg:gap-8">
             {plans.map((plan) => (
-              <PricingCard key={plan.id} plan={plan} billing={billing} />
+              <PricingCard key={plan.id} plan={plan} />
             ))}
           </div>
         </PageContainer>
@@ -80,18 +67,6 @@ export function PricingPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-border">
-                  <td className="px-5 py-4 text-text-secondary">Price</td>
-                  {plans.map((plan) => {
-                    const price =
-                      billing === 'monthly' ? plan.monthlyPrice : plan.oneTimePrice;
-                    return (
-                      <td key={plan.id} className="px-5 py-4 font-semibold">
-                        {price == null ? 'Custom' : formatCurrency(price)}
-                      </td>
-                    );
-                  })}
-                </tr>
                 {featureLabels.map((label) => (
                   <tr key={label} className="border-b border-border last:border-0">
                     <td className="px-5 py-4 text-text-secondary">{label}</td>

@@ -27,7 +27,6 @@ function FilterPanel({
   categories,
   filters,
   onToggleCategory,
-  onPriceChange,
   onClear,
 }) {
   return (
@@ -52,23 +51,6 @@ function FilterPanel({
             </li>
           ))}
         </ul>
-      </div>
-      <div>
-        <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.08em]">Price range</h3>
-        <div className="space-y-3">
-          <label className="block text-sm text-text-secondary">
-            Max: ${filters.maxPrice >= 1000 ? '1000+' : filters.maxPrice}
-            <input
-              type="range"
-              min="0"
-              max="1000"
-              step="50"
-              value={filters.maxPrice}
-              onChange={(e) => onPriceChange(Number(e.target.value))}
-              className="mt-2 w-full accent-primary"
-            />
-          </label>
-        </div>
       </div>
       <Button type="button" variant="outline" className="w-full" onClick={onClear}>
         Clear filters
@@ -143,7 +125,6 @@ export function AppCatalogPage() {
                 categories={result.categories}
                 filters={filters}
                 onToggleCategory={toggleCategory}
-                onPriceChange={(maxPrice) => updateFilters({ maxPrice })}
                 onClear={() => setFilters(defaultFilters)}
               />
             </aside>
@@ -172,8 +153,6 @@ export function AppCatalogPage() {
                   >
                     <option value="featured">Featured</option>
                     <option value="name">Name</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
                   </Select>
                 </div>
               </div>
@@ -251,7 +230,6 @@ export function AppCatalogPage() {
           categories={result.categories}
           filters={filters}
           onToggleCategory={toggleCategory}
-          onPriceChange={(maxPrice) => updateFilters({ maxPrice })}
           onClear={() => {
             setFilters(defaultFilters);
             setFiltersOpen(false);

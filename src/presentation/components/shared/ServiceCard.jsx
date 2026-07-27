@@ -13,9 +13,6 @@ export function ServiceCard({ service, variant = 'preview' }) {
         </div>
         <h3 className="mb-2 text-xl">{service.title}</h3>
         <p className="mb-4 text-text-secondary">{service.description}</p>
-        <p className="mb-4 text-sm text-text-muted">
-          Starting at ${service.startingPrice.toLocaleString()}
-        </p>
         <ul className="mb-6 flex-1 space-y-2">
           {service.features.map((feature) => (
             <li key={feature} className="flex items-start gap-2 text-sm text-text-secondary">

@@ -28,9 +28,9 @@ export const FOOTER_SERVICES = [
   { label: 'Web Design', path: '/services/web-design' },
   { label: 'Software Development', path: '/services/software-development' },
   { label: 'IT Infrastructure', path: '/services/it-infrastructure' },
-  { label: 'NFC Digital Cards', path: '/services/nfc-digital-cards' },
-  { label: 'LMS & Education', path: '/services/lms-education' },
-  { label: 'Digital Marketing', path: '/services/digital-marketing' },
+  { label: 'Social Media Apps', path: '/services/social-media-app-development' },
+  { label: 'App Catalog', path: '/apps' },
+  { label: 'Data Entry', path: '/services/data-entry-services' },
 ];
 
 export const FOOTER_COMPANY = [

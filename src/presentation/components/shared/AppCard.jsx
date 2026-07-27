@@ -1,5 +1,4 @@
 import * as Icons from 'lucide-react';
-import { formatCurrency } from '../../../utils/formatters.js';
 import { Badge } from '../ui/Badge.jsx';
 import { Button } from '../ui/Button.jsx';
 
@@ -16,13 +15,6 @@ export function AppCard({ app }) {
         {app.category}
       </Badge>
       <p className="mb-4 flex-1 text-sm text-text-secondary">{app.description}</p>
-      <p
-        className={`mb-4 text-sm font-semibold ${
-          app.price === 0 ? 'text-success' : 'text-text-primary'
-        }`}
-      >
-        {app.price === 0 ? 'Free' : `From ${formatCurrency(app.price)}`}
-      </p>
       <div className="mt-auto flex gap-2">
         <Button as="a" href={app.demoUrl} variant="ghost" size="sm" className="flex-1">
           Live Demo

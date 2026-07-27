@@ -1,18 +1,10 @@
 import { Check, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { formatCurrency } from '../../../utils/formatters.js';
 import { Badge } from '../ui/Badge.jsx';
 import { Button } from '../ui/Button.jsx';
 import { cn } from '../../../utils/formatters.js';
 
-export function PricingCard({ plan, billing = 'monthly' }) {
-  const price =
-    billing === 'monthly' ? plan.monthlyPrice : plan.oneTimePrice;
-  const priceLabel =
-    price === null || price === undefined
-      ? 'Custom'
-      : formatCurrency(price);
-
+export function PricingCard({ plan }) {
   return (
     <div
       className={cn(
@@ -29,14 +21,6 @@ export function PricingCard({ plan, billing = 'monthly' }) {
       ) : null}
       <h3 className="text-xl">{plan.name}</h3>
       <p className="mt-2 text-sm text-text-muted">{plan.description}</p>
-      <p className="mt-6 font-heading text-4xl font-extrabold text-text-primary">
-        {priceLabel}
-        {price !== null && price !== undefined ? (
-          <span className="ml-1 text-sm font-medium text-text-muted">
-            /{billing === 'monthly' ? 'mo' : 'project'}
-          </span>
-        ) : null}
-      </p>
       <ul className="my-6 flex-1 space-y-3">
         {plan.features.map((feature) => (
           <li
