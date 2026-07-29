@@ -345,3 +345,20 @@
     cursor: auto !important;
   }
 }
+
+@media (pointer: coarse), (max-width: 767px) {
+  .hero-aurora,
+  .hero-beam,
+  .hologram-grid,
+  .accent-orbit-border::before {
+    animation: none !important;
+  }
+
+  .hero-aurora {
+    filter: blur(32px);
+  }
+
+  .tech-backdrop::after {
+    display: none;
+  }
+}

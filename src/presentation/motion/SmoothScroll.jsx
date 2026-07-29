@@ -3,10 +3,10 @@ import Lenis from 'lenis';
 import { useMotionPrefs } from './MotionProvider.jsx';
 
 export function SmoothScroll({ children }) {
-  const { reducedMotion } = useMotionPrefs();
+  const { reducedMotion, isFinePointer } = useMotionPrefs();
 
   useEffect(() => {
-    if (reducedMotion) return undefined;
+    if (reducedMotion || !isFinePointer) return undefined;
 
     const lenis = new Lenis({
       lerp: 0.18,
@@ -27,7 +27,7 @@ export function SmoothScroll({ children }) {
       lenis.destroy();
       document.documentElement.classList.remove('lenis');
     };
-  }, [reducedMotion]);
+  }, [isFinePointer, reducedMotion]);
 
   return children;
 }

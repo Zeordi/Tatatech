@@ -8,6 +8,9 @@ export async function submitQuote(payload) {
 }
 
 export async function submitTicket(payload) {
+  if (!payload?.email || !payload?.subject || !payload?.description) {
+    throw new Error('Email, subject, and description are required.');
+  }
   return contactRepository.submitTicket(payload);
 }
 

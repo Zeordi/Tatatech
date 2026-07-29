@@ -6,11 +6,11 @@ import { useTheme } from '../hooks/useTheme.js';
 // floating hexagons, data streams, and a multicolor particle network.
 export function ParticleField() {
   const canvasRef = useRef(null);
-  const { reducedMotion } = useMotionPrefs();
+  const { reducedMotion, isFinePointer } = useMotionPrefs();
   const { isDark } = useTheme();
 
   useEffect(() => {
-    if (reducedMotion) return undefined;
+    if (reducedMotion || !isFinePointer) return undefined;
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
     const ctx = canvas.getContext('2d');
@@ -263,9 +263,9 @@ export function ParticleField() {
       window.removeEventListener('mousemove', onMove);
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [reducedMotion, isDark]);
+  }, [isDark, isFinePointer, reducedMotion]);
 
-  if (reducedMotion) return null;
+  if (reducedMotion || !isFinePointer) return null;
 
   return (
     <canvas

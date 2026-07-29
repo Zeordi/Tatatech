@@ -21,6 +21,7 @@ export const NAV_LINKS = [
   { label: 'App Catalog', path: '/apps' },
   { label: 'About', path: '/about' },
   { label: 'Blog', path: '/blog' },
+  { label: 'Support', path: '/support' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -39,5 +40,6 @@ export const FOOTER_COMPANY = [
   { label: 'Blog', path: '/blog' },
   { label: 'Careers', path: '/careers' },
   { label: 'Contact', path: '/contact' },
+  { label: 'Support', path: '/support' },
   { label: 'Pricing', path: '/pricing' },
 ];
