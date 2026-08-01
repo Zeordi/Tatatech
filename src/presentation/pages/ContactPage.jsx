@@ -60,8 +60,12 @@ export function ContactPage() {
       setSuccess(true);
       toast.success('Message sent successfully.');
       reset();
-    } catch {
-      toast.error('Something went wrong. Please try again.');
+    } catch (err) {
+      if (err?.needsActivation) {
+        toast.error('Email delivery is not activated yet. Please try again shortly.');
+      } else {
+        toast.error('Something went wrong. Please try again.');
+      }
     }
   };
 

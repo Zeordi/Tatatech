@@ -33,34 +33,10 @@ export const teamData = [
     id: '1',
     name: 'Dr. Tatek Eshete',
     title: 'Founder & CEO',
-    photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&h=400&q=80',
-    credentials: 'PhD, Computer Science · 15+ years in digital transformation',
-    linkedin: 'https://linkedin.com',
+    photo: '/ceo-tatek.png',
+    credentials: 'PhD · Technology, Education, and Digital Transformation',
+    linkedin: 'https://www.linkedin.com/in/tatatech/',
     isFounder: true,
-  },
-  {
-    id: '2',
-    name: 'Amara Wells',
-    title: 'Head of Design',
-    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: '3',
-    name: 'Daniel Park',
-    title: 'Engineering Lead',
-    photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: '4',
-    name: 'Sofia Rahman',
-    title: 'Product Manager',
-    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: '5',
-    name: 'Marcus Lee',
-    title: 'Infrastructure Lead',
-    photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80',
   },
 ];
 

@@ -48,8 +48,12 @@ export function SupportPage() {
       setTicket(result.id);
       reset();
       toast.success('Support ticket created.');
-    } catch {
-      toast.error('We could not create the ticket. Please try again.');
+    } catch (err) {
+      if (err?.needsActivation) {
+        toast.error('Email delivery is not activated yet. Please try again shortly.');
+      } else {
+        toast.error('We could not create the ticket. Please try again.');
+      }
     }
   };
 

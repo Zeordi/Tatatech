@@ -2,8 +2,9 @@ export const SITE = {
   name: 'TATATECH',
   tagline: 'Full-Service Digital Technology. Delivered.',
   email: 'hello@tatatech.net',
+  supportEmail: 'suppport2@tatatech.net',
   careersEmail: 'careers@tatatech.net',
-  phone: '+1 (703) 555-0142',
+  phone: '+1 (571) 373-9199',
   address: 'Alexandria, Virginia, USA',
   hours: 'Mon–Fri, 9:00 AM – 6:00 PM EST',
   social: {

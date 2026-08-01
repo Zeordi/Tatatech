@@ -24,11 +24,8 @@ export function Footer() {
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <Link to="/" className="mb-4 flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-hero-gradient font-heading text-sm font-extrabold text-white">
-              TT
-            </span>
-            <span className="font-heading text-lg font-extrabold">TATATECH</span>
+          <Link to="/" className="mb-4 flex items-center">
+            <img src="/TATA.png" alt="TATATECH" className="h-12 w-auto" />
           </Link>
           <p className="mb-5 max-w-xs text-sm text-text-secondary">
             Full-service digital technology from Alexandria, Virginia — design, software, infrastructure, and growth.

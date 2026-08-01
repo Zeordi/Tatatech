@@ -30,11 +30,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/80 backdrop-blur dark:bg-background/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5" aria-label="TATATECH home">
-          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-hero-gradient font-heading text-sm font-extrabold text-white">
-            TT
-          </span>
-          <span className="font-heading text-lg font-extrabold tracking-tight">TATATECH</span>
+        <Link to="/" className="flex items-center" aria-label="TATATECH home">
+          <img src="/TATA.png" alt="TATATECH" className="h-11 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">

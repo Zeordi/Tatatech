@@ -57,8 +57,8 @@ export function PageTransition() {
             animate={{ opacity: [0, 1, 1, 0], scale: [0.85, 1, 1, 1.05] }}
             transition={{ duration: 0.6, times: [0, 0.3, 0.6, 1] }}
           >
-            <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 font-heading text-xl font-extrabold text-white shadow-[0_0_40px_rgba(37,99,235,0.55)]">
-              TT
+            <span className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white p-3 shadow-[0_0_40px_rgba(37,99,235,0.55)]">
+              <img src="/TATA.png" alt="TATATECH" className="h-full w-full object-contain" />
             </span>
           </motion.div>
         </motion.div>
