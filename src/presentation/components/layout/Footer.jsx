@@ -9,14 +9,16 @@ import {
   FacebookIcon,
   InstagramIcon,
   LinkedInIcon,
-  XIcon,
+  TikTokIcon,
+  YouTubeIcon,
 } from '../shared/SocialIcons.jsx';
 
 const social = [
-  { label: 'X', href: SITE.social.x, icon: XIcon },
   { label: 'LinkedIn', href: SITE.social.linkedin, icon: LinkedInIcon },
   { label: 'Facebook', href: SITE.social.facebook, icon: FacebookIcon },
   { label: 'Instagram', href: SITE.social.instagram, icon: InstagramIcon },
+  { label: 'TikTok', href: SITE.social.tiktok, icon: TikTokIcon },
+  { label: 'YouTube', href: SITE.social.youtube, icon: YouTubeIcon },
 ];
 
 export function Footer() {

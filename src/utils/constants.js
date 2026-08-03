@@ -1,17 +1,19 @@
 export const SITE = {
   name: 'TATATECH',
   tagline: 'Full-Service Digital Technology. Delivered.',
-  email: 'hello@tatatech.net',
+  email: 'support@tatatech.net',
   supportEmail: 'suppport2@tatatech.net',
   careersEmail: 'careers@tatatech.net',
   phone: '+1 (571) 373-9199',
-  address: 'Alexandria, Virginia, USA',
+  address: '5100 Leesburg Pike Ste 306, Alexandria, VA 22302, United States',
   hours: 'Mon–Fri, 9:00 AM – 6:00 PM EST',
   social: {
     x: 'https://x.com/tatatech',
-    linkedin: 'https://linkedin.com/company/tatatech',
-    facebook: 'https://facebook.com/tatatech',
-    instagram: 'https://instagram.com/tatatech',
+    linkedin: 'https://www.linkedin.com/in/tatatech',
+    facebook: 'https://www.facebook.com/TATATECH1',
+    instagram: 'https://www.instagram.com/tatatech75?igsh=MWR6enB3aTJzbmNqNg==',
+    tiktok: 'https://www.tiktok.com/@tatatech.dr.t?_r=1&_t=ZS-98ZnqYh9IsG',
+    youtube: 'https://youtube.com/@tatatech75?si=Kzqzpx1wXZSX0Ar2',
   },
 };
 

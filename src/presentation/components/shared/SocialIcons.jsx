@@ -29,3 +29,19 @@ export function XIcon({ className = 'h-4 w-4' }) {
     </svg>
   );
 }
+
+export function TikTokIcon({ className = 'h-4 w-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M15.58 2c.33 1.84 1.4 3.35 3.02 4.25a6.7 6.7 0 0 0 3.4.86v3.22a9.95 9.95 0 0 1-3.88-.77v5.92A7.48 7.48 0 1 1 10.64 8v3.34a4.25 4.25 0 1 0 4.25 4.24V2h.7Z" />
+    </svg>
+  );
+}
+
+export function YouTubeIcon({ className = 'h-4 w-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M23.5 7.3a3 3 0 0 0-2.1-2.12C19.54 4.7 12 4.7 12 4.7s-7.54 0-9.4.48A3 3 0 0 0 .5 7.3 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 4.7 3 3 0 0 0 2.1 2.12c1.86.48 9.4.48 9.4.48s7.54 0 9.4-.48a3 3 0 0 0 2.1-2.12A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-4.7ZM9.6 15.08V8.92L15.6 12l-6 3.08Z" />
+    </svg>
+  );
+}
