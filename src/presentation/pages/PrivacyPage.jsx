@@ -30,12 +30,12 @@ const sections = [
   {
     id: 'your-rights',
     title: 'Your Rights',
-    body: 'You may request access, correction, or deletion of your personal information by contacting hello@tatatech.net.',
+    body: 'You may request access, correction, or deletion of your personal information by contacting support@tatatech.net.',
   },
   {
     id: 'contact',
     title: 'Contact',
-    body: 'Questions about this policy can be sent to hello@tatatech.net.',
+    body: 'Questions about this policy can be sent to support@tatatech.net.',
   },
 ];
 
