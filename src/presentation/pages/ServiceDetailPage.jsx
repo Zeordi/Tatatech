@@ -28,21 +28,34 @@ export function ServiceDetailPage() {
     );
   }, [slug]);
 
+  const pageMeta = usePageMeta(
+    service
+      ? {
+          title: service.title,
+          description: service.shortDescription,
+          path: `/services/${service.slug}`,
+        }
+      : {
+          title: 'Service Not Found',
+          description: 'The requested TATATECH service could not be found.',
+          path: `/services/${slug}`,
+        },
+  );
+
   if (!service) {
     return (
-      <PageContainer className="py-24">
-        <p className="text-text-secondary">Loading service…</p>
-      </PageContainer>
+      <>
+        {pageMeta}
+        <PageContainer className="py-24">
+          <p className="text-text-secondary">Loading service…</p>
+        </PageContainer>
+      </>
     );
   }
 
   return (
     <>
-      {usePageMeta({
-        title: service.title,
-        description: service.shortDescription,
-        path: `/services/${service.slug}`,
-      })}
+      {pageMeta}
       <div className="border-b border-border bg-surface py-10">
         <PageContainer>
           <Breadcrumbs

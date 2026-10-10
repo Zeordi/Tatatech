@@ -15,10 +15,12 @@ export function Odometer({
   const ref = useRef(null);
   const inView = useInView(ref, { once: !durationDriven, amount: 0.5 });
   const { reducedMotion } = useMotionPrefs();
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(value);
+  const animated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return undefined;
+    if (!inView || reducedMotion || animated.current) return undefined;
+    animated.current = true;
     if (reducedMotion) {
       setShown(value);
       return undefined;
@@ -35,6 +37,7 @@ export function Odometer({
       setShown(Math.round(value * eased));
       if (t < 1) frame = requestAnimationFrame(tick);
     };
+
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
   }, [inView, value, reducedMotion, durationDriven, progress, duration]);

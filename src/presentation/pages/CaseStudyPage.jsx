@@ -24,22 +24,35 @@ export function CaseStudyPage() {
     );
   }, [slug]);
 
+  const pageMeta = usePageMeta(
+    project
+      ? {
+          title: project.title,
+          description: project.challenge,
+          path: `/portfolio/${project.slug}`,
+          image: project.image,
+        }
+      : {
+          title: 'Case Study Not Found',
+          description: 'The requested TATATECH case study could not be found.',
+          path: `/portfolio/${slug}`,
+        },
+  );
+
   if (!project) {
     return (
-      <PageContainer className="py-24">
-        <p className="text-text-secondary">Loading case study…</p>
-      </PageContainer>
+      <>
+        {pageMeta}
+        <PageContainer className="py-24">
+          <p className="text-text-secondary">Loading case study…</p>
+        </PageContainer>
+      </>
     );
   }
 
   return (
     <>
-      {usePageMeta({
-        title: project.title,
-        description: project.challenge,
-        path: `/portfolio/${project.slug}`,
-        image: project.image,
-      })}
+      {pageMeta}
       <Section className="!pt-10">
         <PageContainer>
           <Breadcrumbs

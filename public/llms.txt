@@ -1,0 +1,56 @@
+# TATATECH — Website Guide for AI Agents
+
+TATATECH is a full-service digital technology company based in Alexandria, Virginia.
+The company builds and operates software products (an app catalog of 300+ ready-to-deploy
+business apps across Business, E-Commerce, Healthcare, Education, and other categories),
+delivers custom web and software projects, and provides IT infrastructure, NFC cards,
+learning-management, and digital-growth services to businesses in the United States.
+
+Website: https://tatatech.net
+Contact: support@tatatech.net | +1 (571) 373-9199
+Address: 5100 Leesburg Pike Ste 306, Alexandria, VA 22302, United States
+Hours: Mon–Fri, 9:00 AM – 6:00 PM EST
+
+Founder: Dr. Tatek Eshete, PhD — Founder & CEO.
+
+## Key pages
+
+- Home: https://tatatech.net/
+- Services overview: https://tatatech.net/services
+- Portfolio / case studies: https://tatatech.net/portfolio
+- App catalog: https://tatatech.net/apps
+- About: https://tatatech.net/about
+- Pricing: https://tatatech.net/pricing
+- Blog: https://tatatech.net/blog
+- Contact: https://tatatech.net/contact
+- Support: https://tatatech.net/support
+- Careers: https://tatatech.net/careers
+- Privacy Policy: https://tatatech.net/privacy
+- Terms of Service: https://tatatech.net/terms
+
+## Services
+
+TATATECH provides web design, software development, electronic chips programming,
+internet content provider solutions, LMS for education, social media app development,
+IT infrastructure, portal development, digital marketing, and data entry services.
+See https://tatatech.net/services for the full list; each service has a dedicated page
+under /services/<slug>.
+
+## Portfolio
+
+Each case study is published under /portfolio/<slug> and includes the project title,
+client, industry, year, challenge, solution, results, a gallery, and a customer
+testimonial where applicable.
+
+## Blog
+
+Articles are published at https://tatatech.net/blog/<slug> and cover software
+architecture, NFC, cloud security, and design systems.
+
+## Notes
+
+- Data shown on the site (team, testimonials, case studies, blog posts) is provided
+  from the repository's verified content sources.
+- Review counts, ratings, and customer results shown are from internal content
+  provided in the repository; confirm externally before treating as independently
+  verified metrics.
