@@ -95,7 +95,42 @@ const shellHtml = readFileSync(shellFile, 'utf8');
 await startServer();
 console.log(`[prerender] local server on ${ORIGIN}`);
 
+// Resolve the Chrome executable with a deterministic priority:
+//   1. PUPPETEER_EXECUTABLE_PATH (explicit override, e.g. a system Chrome)
+//   2. puppeteer's downloaded Chromium (used by `puppeteer.executablePath()`)
+//   3. common system Chrome/Chromium paths shipped by the runtime image
+//   4. undefined -> let Puppeteer fall back to its bundled default
+//
+// On Vercel the build image provides Chromium only if its shared-library
+// dependencies are installed (see vercel.json build command / .puppeteerrc),
+// so the executable itself is resolved here and the OS libs are provisioned
+// separately to avoid the "Failed to launch the browser process: Code: 127"
+// / "libnspr4.so: cannot open shared object file" failure.
+function resolveChromePath() {
+  if (process.env.PUPPETEER_EXECUTABLE_PATH) return process.env.PUPPETEER_EXECUTABLE_PATH;
+  try {
+    const fromPuppeteer = puppeteer.executablePath();
+    if (fromPuppeteer && statSync(fromPuppeteer).isFile()) return fromPuppeteer;
+  } catch {}
+  for (const candidate of [
+    '/opt/google/chrome/chrome',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/usr/local/bin/chromium',
+    '/snap/bin/chromium',
+  ]) {
+    try {
+      if (statSync(candidate).isFile()) return candidate;
+    } catch {}
+  }
+  return undefined;
+}
+
+const executablePath = resolveChromePath();
+console.log(`[prerender] chrome executable: ${executablePath || 'default (puppeteer bundled)'}`);
+
 const browser = await puppeteer.launch({
+  executablePath,
   headless: 'new',
   args: [
     '--no-sandbox',
