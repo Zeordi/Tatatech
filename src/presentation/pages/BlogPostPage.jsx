@@ -6,6 +6,7 @@ import {
   getRelatedPosts,
 } from '../../domain/usecases/getContent.js';
 import { formatDate } from '../../utils/formatters.js';
+import { buildArticleSchema } from '../../utils/seo.js';
 import { usePageMeta } from '../hooks/usePageMeta.jsx';
 import { Breadcrumbs } from '../components/layout/Breadcrumbs.jsx';
 import { PageContainer } from '../components/layout/PageContainer.jsx';
@@ -38,24 +39,31 @@ export function BlogPostPage() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const shareUrl = `https://tatatech.net/blog/${post ? post.slug : slug}`;
+
+  const pageMeta = usePageMeta({
+    title: post ? post.title : 'Loading article',
+    description: post ? post.excerpt : 'Blog post from TATATECH.',
+    path: `/blog/${slug}`,
+    image: post ? post.image : undefined,
+    imageAlt: post ? post.title : undefined,
+    structuredData: post ? [buildArticleSchema(post, shareUrl)] : undefined,
+  });
+
   if (!post) {
     return (
-      <PageContainer className="py-24">
-        <p className="text-text-secondary">Loading article…</p>
-      </PageContainer>
+      <>
+        {pageMeta}
+        <PageContainer className="py-24">
+          <p className="text-text-secondary">Loading article…</p>
+        </PageContainer>
+      </>
     );
   }
 
-  const shareUrl = `https://tatatech.net/blog/${post.slug}`;
-
   return (
     <>
-      {usePageMeta({
-        title: post.title,
-        description: post.excerpt,
-        path: `/blog/${post.slug}`,
-        image: post.image,
-      })}
+      {pageMeta}
       <div
         className="fixed left-0 top-0 z-[60] h-1 bg-primary transition-[width]"
         style={{ width: `${progress}%` }}

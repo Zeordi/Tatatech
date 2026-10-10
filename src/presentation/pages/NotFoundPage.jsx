@@ -11,6 +11,7 @@ export function NotFoundPage() {
         title: 'Page Not Found',
         description: 'The page you requested does not exist.',
         path: '/404',
+        noindex: true,
       })}
       <div className="relative overflow-hidden py-24 md:py-32">
         <motion.div

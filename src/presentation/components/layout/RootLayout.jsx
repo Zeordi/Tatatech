@@ -1,7 +1,9 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Footer } from './Footer.jsx';
 import { Navbar } from './Navbar.jsx';
 import { Toast } from '../ui/Toast.jsx';
+import { buildOrganizationSchema, buildWebSiteSchema, jsonLd } from '../../../utils/seo.js';
 import {
   PageTransition,
   ParticleField,
@@ -12,6 +14,10 @@ import {
 export function RootLayout() {
   return (
     <SmoothScroll>
+      <Helmet>
+        <script type="application/ld+json">{jsonLd(buildOrganizationSchema())}</script>
+        <script type="application/ld+json">{jsonLd(buildWebSiteSchema())}</script>
+      </Helmet>
       <div id="app-scale-root" className="relative z-10 flex min-h-screen flex-col">
         <a
           href="#main-content"
